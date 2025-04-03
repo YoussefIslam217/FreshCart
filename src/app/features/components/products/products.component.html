@@ -1,0 +1,62 @@
+<div class="max-w-3xl mx-auto my-7">
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+        </div>
+        <input type="search" id="default-search"
+            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search Mockups, Logos..." required [(ngModel)]="searchValue" />
+
+    </div>
+</div>
+
+<div class="container mx-auto mt-5">
+    <div class="flex flex-wrap justify-center gap-4 ">
+        @for (p of allProducts|search:searchValue; track $index) {
+        <div class="flex flex-col justify-between min-h-screen  max-w-xs  bg-white border border-gray-200 rounded-lg shadow-lg  dark:bg-gray-800 dark:border-gray-700 ">
+            <a>
+                <img class=" rounded-t-lg cursor-pointer" [src]="p.imageCover"
+                    [routerLink]="['/single', p._id,p.title,p.category.name]" alt="product image" />
+            </a>
+            <div class="px-5 pb-5 ">
+                <div>
+                    <h5 class="text-xl font-semibold text-center tracking-tight text-gray-900 dark:text-white mb-2">
+                        {{p.category.name}}</h5>
+                    <h4 class="text-center mb-4">{{p.title|onsale}}</h4>
+                </div>
+                    <div class="flex items-center justify-between  space-x-1 rtl:space-x-reverse mb-4">
+                        <div>
+                            <span
+                                class="text-2xl font-bold text-gray-900 dark:text-white">{{p.price|currency:'EGP'}}
+                            </span>
+                        </div>
+
+                        <div class="flex items-center">
+                            <i 
+                            [class.text-red-500]="isRed"
+                            (click)="changeToRed()"
+                            (click)="addToWishList(p._id)"
+                            class="fa-solid fa-heart text-slate-300 hover:text-red-500 transition-colors duration-200 me-3 text-lg cursor-pointer"></i>
+                            <i class="fa-solid fa-star rating-color text-lg"></i>
+                            <span
+                                class="bg-main text-white text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">{{p.ratingsAverage}}</span>
+                        </div>
+                    </div>
+
+
+
+                <a (click)="addToCart(p._id)"
+                    class=" bg-main btn px-4 py-2 rounded-md text-center cursor-pointer text-white hover:text-white m-auto  block mt-3 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">Add
+                    to cart</a>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+

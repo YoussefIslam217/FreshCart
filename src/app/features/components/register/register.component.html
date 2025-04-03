@@ -1,0 +1,232 @@
+
+<img src="images/light-patten.svg" class="absolute   z-0 flex flex-col justify-between min-h-screen" alt="">
+
+<form [formGroup]="registerForm" (ngSubmit)="getData(registerForm)" class="max-w-sm mx-auto">
+  <div class="  py-6 flex flex-col justify-center sm:py-12">
+    <div class="relative py-3 max-w-xl mx-auto">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-[#addfad] to-[#32cd32] shadow-lg transform  skew-y-0 -rotate-6 rounded-3xl ">
+      </div>
+      <div class="relative px-4 py-10 bg-white shadow-2xl rounded-3xl sm:p-20">
+        <div class="max-w-md mx-auto">
+
+          <div>
+            <h1 class="text-2xl font-semibold bg-gradient-to-r from-[#addfad] to-[#32cd32] inline-block text-transparent bg-clip-text">Register Now:</h1>
+          </div>
+          <div class="divide-y divide-gray-200">
+            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+
+
+              @if (isErrorMsg) {
+                <div class="flex items-center p-4 mb-7 text-sm text-red-800 border border-red-300 h-10 w-full rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1" role="alert">
+                  <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    Account already exists
+                  </div>
+                </div>
+              }
+              <div class="relative mb-5">
+                <input id="name" formControlName="name" type="text"
+                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600 rounded-full"
+                  placeholder="Name" />
+                <label 
+                for="name"
+                  class="absolute left-2 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-5  peer-focus:text-sm ">Name
+                  </label>
+
+                @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')) {
+                <div
+                  class="flex items-center p-3 mb-4 text-sm text-red-800 border border-red-300  bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 rounded-full mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div>
+                    please write your name
+                  </div>
+                </div>
+                }
+
+                @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('minlength')) {
+                <div
+                  class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div>
+                    name must be at least 3 characters
+                  </div>
+                </div>
+                }
+
+                @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('maxlength')) {
+                  <div
+                    class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                    role="alert">
+                    <span class="sr-only">Info</span>
+                    <div>
+                      maximum 14 characters
+                    </div>
+                  </div>
+                  }
+
+              </div>
+
+              <div class="relative mb-5">
+
+
+                <input formControlName="email" type="email"
+                id="email"
+                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600 rounded-full"
+                  placeholder="E-mail" />
+                <label
+                for="email"
+                  class="absolute left-2 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-5  peer-focus:text-sm ">E-mail</label>
+                @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')) {
+                <div
+                  class="flex items-center h-10 w-full rounded-full text-sm text-red-800 border border-red-300  bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div class="relative left-2">
+                    please write your email
+                  </div>
+                </div>
+                }
+
+                @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')) {
+                <div
+                  class="flex items-center h-10 w-full rounded-full text-sm text-red-800 border border-red-300  bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div class="relative left-2">
+                    please write correct email
+                  </div>
+                </div>
+                }
+              </div>
+
+
+
+              <div class="relative mb-5">
+
+
+                <input formControlName="password" type="password"
+                id="pass"
+                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600 rounded-full"
+                  placeholder="Password" />
+                <label
+                for="pass"
+                  class="absolute left-2 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+
+                @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')) {
+                <div
+                  class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 h-10 w-full rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div class="relative left-2">
+                    please write a password
+                  </div>
+                </div>
+                }
+
+                @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('pattern')) {
+                <div
+                  class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 h-10 w-full rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <ul class="relative left-2">
+                    <li>at least 6 characters</li>
+                    <li>maximum 15 characters</li>
+                  </ul>
+                </div>
+                }
+
+              </div>
+
+              <div class="relative mb-5">
+                <input id="rePass" formControlName="rePassword"  type="password"
+                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600 rounded-full"
+                  placeholder="Repassword" />
+                <label 
+                for="rePass"
+                  class="absolute left-2 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-5  peer-focus:text-sm ">Repassword</label>
+
+                @if(registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.hasError('required')) {
+                <div
+                  class="flex items-center p-3 mb-4 text-sm text-red-800 border border-red-300  bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 rounded-full mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div>
+                    please write your rePassword
+                  </div>
+                </div>
+                }
+
+                @if(registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.hasError('didntMatch')) {
+                <div
+                  class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div>
+                    Repassword didn't match password
+                  </div>
+                </div>
+                }
+
+              </div>
+
+              <div class="relative mb-5">
+                <input id="phone" formControlName="phone"  type="text"
+                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600 rounded-full"
+                  placeholder="Phone" />
+                <label 
+                for="phone"
+                  class="absolute left-2 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-sm">Phone</label>
+
+                @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('required')) {
+                <div
+                  class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-full bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div>
+                    please write your phone number
+                  </div>
+                </div>
+                }
+
+                @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('pattern')) {
+                <div
+                  class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300  bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-1 rounded-full"
+                  role="alert">
+                  <span class="sr-only">Info</span>
+                  <div>
+                    please write egyption phone number only 0111xxxxxxxx
+                  </div>
+                </div>
+                }
+
+              </div>
+
+              <div class="relative">
+                @if (isLoading) {
+                <button type="submit"
+                  class="bg-main w-full text-white rounded-md px-2 py-1">
+                  <i class="fas fa-spinner fa-spin"></i>
+                </button>
+                }@else {
+                <div class="flex  justify-start gap-4 items-center">
+
+                  <button type="submit"
+                    class="bg-main w-full text-white rounded-md px-2 py-1">Register</button>
+                  
+                </div>
+
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

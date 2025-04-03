@@ -1,0 +1,80 @@
+<div class="container mx-auto mt-10 px-4 sm:px-6 lg:px-8">
+  @if (products.length > 0) {
+    <div class="flex flex-col sm:flex-row shadow-md my-10 bg-white rounded-lg overflow-hidden">
+      <div class="w-full sm:w-3/4 p-6">
+        <div class="flex justify-between border-b pb-6">
+          <h1 class="font-semibold text-2xl text-main">Shopping Cart</h1>
+          <h2 class="font-semibold text-2xl">{{cartData?.numOfCartItems}} Items</h2>
+        </div>
+
+        @for (p of products; track $index) {
+          <div class="flex flex-col sm:flex-row items-center py-6 border-b border-gray-200">
+            <div class="w-full sm:w-1/4">
+              <img [src]="p.product.imageCover" alt="{{p.product.title}}" class="w-full h-full object-cover rounded-lg" />
+            </div>
+
+            <div class="w-full sm:w-3/4 sm:pl-6 mt-4 sm:mt-0">
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-lg font-bold text-gray-800 capitalize">{{p.product.title}}</p>
+                <div class="flex items-center">
+                  <button (click)="updateQuantity(p.count - 1, p.product.id)" class="border rounded-md py-2 px-4 mr-2 hover:bg-gray-100">-</button>
+                  <span class="text-center w-8">{{p.count}}</span>
+                  <button (click)="updateQuantity(p.count + 1, p.product.id)" class="border rounded-md py-2 px-4 ml-2 hover:bg-gray-100">+</button>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between mt-4">
+                <div class="flex items-center">
+                  <p (click)="addToWishList(p.product.id)" class="text-xs underline text-gray-600 cursor-pointer hover:text-gray-800">Add to favorites</p>
+                  <p (click)="removeCartItem(p.product.id)" class="text-xs underline text-red-500 pl-5 cursor-pointer hover:text-red-700">Remove</p>
+                </div>
+                <p class="text-lg font-bold text-gray-800">{{p.price * p.count}} EGP</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="w-full sm:w-1/4 bg-gray-50 p-6">
+        <h1 class="font-semibold text-2xl border-b pb-6 text-main">Cart Total</h1>
+        <div class="flex justify-between mt-6">
+          <span class="text-sm uppercase text-gray-600">Number of items:</span>
+          <span class="text-sm font-semibold">{{cartData?.numOfCartItems}}</span>
+        </div>
+        <div class="flex justify-between mt-4">
+          <span class="text-sm uppercase text-gray-600">Shipping:</span>
+          <span class="text-sm font-semibold">Free</span>
+        </div>
+        <div class="border-t mt-6">
+          <div class="flex justify-between py-6 text-sm uppercase">
+            <span class="font-semibold">Total cost</span>
+            <span class="font-semibold">{{cartData?.data.totalCartPrice}} EGP</span>
+          </div>
+          <button [routerLink]="['/checkout', cartData?.cartId]" class="bg-main font-semibold py-3 text-sm text-white uppercase w-full rounded-lg transition duration-300">
+            Checkout
+          </button>
+        </div>
+
+        <div class="flex flex-col lg:flex-row justify-between mt-6 space-y-4 lg:space-y-0 lg:space-x-4">
+          <a routerLink="/home" class="w-full lg:w-auto">
+            <button class="w-full bg-main text-white py-3 px-6 rounded-lg text-sm font-semibold  transition duration-300">
+              Return to shop
+            </button>
+          </a>
+          <button (click)="clearAllCart()" class="w-full lg:w-auto bg-main text-white py-3 px-6 rounded-lg text-sm font-semibold  transition duration-300">
+            Clear Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  }@else {
+    <div class="text-center py-20">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4">Your cart is empty</h1>
+      <p class="text-gray-600">Start shopping to add items to your cart.</p>
+    </div>
+  }
+
+  
+
+
+</div>

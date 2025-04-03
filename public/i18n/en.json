@@ -1,0 +1,15 @@
+{
+    "navbar":{
+        "home":"HOME",
+        "cart":"CART",
+        "categories":"CATEGORIES",
+        "brands":"BRANDS",
+        "products":"PRODUCTS",
+        "signOut":"SIGNOUT",
+        "login":"LOGIN" ,
+        "wishlist":"WISHLIST"
+    },
+    "header":{
+        "popular categories":"pop cat"
+    }
+}

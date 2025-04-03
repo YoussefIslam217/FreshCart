@@ -1,0 +1,39 @@
+<section>
+    <div class="md:grid md:grid-cols-[70%_minmax(0,1fr)] flex flex-col overflow-hidden">
+        <div>
+            <owl-carousel-o [options]="customMainSlider">
+                <ng-template carouselSlide>
+                    <img src="/images/img1.avif" class="w-full h-[300px]" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img2.avif" class="w-full h-[300px]" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img3.avif" class="w-full h-[300px]" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img4.avif" class="w-full h-[300px]" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img5.avif" class="w-full h-[300px]" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img6.avif" class="w-full h-[300px]" alt="">
+                </ng-template>
+            </owl-carousel-o>
+
+        </div>
+
+        <div class="">
+            <img src="/images/grocery-banner.png" class="w-full  md:h-[150px] object-cover" alt="">
+            <img src="/images/grocery-banner-2.jpeg" class="w-full  md:h-[150px] object-cover" alt="">
+        </div>
+    </div>
+</section>
+
+<h1
+    class="my-5 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white  text-main">
+    Popular Categories:</h1>
+<app-slider-categories [categories]="allCategories"></app-slider-categories>
+
+<app-products></app-products>

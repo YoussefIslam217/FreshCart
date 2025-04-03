@@ -1,0 +1,14 @@
+{
+    "navbar":{
+        "home":"الرئيسية",
+        "cart":"عربة التسوق",
+        "categories":"الأقسام",
+        "brands":"العلامات التجارية",
+        "products":"المنتجات",
+        "signOut":"تسجيل الخروج",
+        "wishlist":"قائمة الرغبات"
+    },
+    "header":{
+        "popular categories":"pop cat"
+    }
+}
